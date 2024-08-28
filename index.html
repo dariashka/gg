@@ -63,6 +63,10 @@
             line-height: 1.5;
         }
 
+        .checkbox-wrapper {
+            margin-top: 20px;
+        }
+
         .membership {
             display: flex;
             justify-content: space-around;
@@ -89,7 +93,6 @@
         .membership-card p {
             font-size: 1em;
             color: #555;
-            margin-bottom: 20px;
             line-height: 1.5;
         }
 
@@ -176,6 +179,12 @@
         <h2>Upgrade to a Premium Membership<br/>1 WEEK - FREE TRIAL</h2>
         <p>Unlock exclusive benefits, access to luxury villas, and receive personalized support with our Premium
             Monthly Membership. Join today and elevate your travel experiences to a whole new level.</p>
+
+        <div class="checkbox-wrapper">
+            <!-- checkbox-->
+            <input type="checkbox" id="yearly"/>
+            <label for="yearly" class="">Change to yearly pricing</label>
+        </div>
     </section>
 
     <!-- Membership Plans Section -->
@@ -218,8 +227,7 @@
 </footer>
 
 <script>
-    // Mount Rebilly Instruments
-    RebillyInstruments.mount({
+    let options = {
         publishableKey: 'pk_sandbox_MGxmn6NR0X-AggKVIog13TJZDzpiEuMbh8HeLih',
         organizationId: 'phronesis-friendfinder',
         websiteId: 'www.ff.com',
@@ -228,8 +236,19 @@
             {
                 planId: 'premium-membership-monthly',
                 quantity: 1,
-                thumbnail: '',
-            },
+            }
+        ],
+        addons: [
+            {
+                planId: 'personalized-travel-plan',
+                quantity: 1
+            }
+        ],
+        bumpOffer: [
+            {
+                planId: 'platinum-membership-monthly',
+                quantity: 1,
+            }
         ],
         theme: {
             colorPrimary: '#F9740A', // Brand color
@@ -239,18 +258,94 @@
             fontFamily: 'Trebuchet MS, sans-serif' // Website font family
         },
         paymentInstruments: {
-            address: {
-                show: ['email', 'phoneNumber', 'city', 'country'],
-                require: ['email', 'phoneNumber', 'city', 'country'],
-            }
+            // address: {
+            //     show: ['email', 'phoneNumber', 'city', 'country'],
+            //     require: ['email', 'phoneNumber', 'city', 'country'],
+            // }
+        },
+        features: {
         }
-    });
+    };
+
+    const yearlyCheckbox = document.querySelector('#yearly');
+    const checkboxLabel = document.querySelector('.checkbox-wrapper label');
+
+    yearlyCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            checkboxLabel.innerText = 'Change to monthly pricing';
+            RebillyInstruments.update({
+                ...options,
+                items: [
+                    {
+                        planId: 'premium-membership-yearly',
+                        quantity: 1,
+                    }
+                ],
+                bumpOffer: [
+                    {
+                        planId: 'platinum-membership-yearly',
+                        quantity: 1,
+                    }
+                ],
+            })
+        } else {
+            checkboxLabel.innerText = 'Change to yearly pricing';
+            RebillyInstruments.update(options);
+        }
+    })
+
+    const form = document.querySelector('.rebilly-instruments');
+    // Mount Rebilly Instruments
+    RebillyInstruments.mount(options);
     // Optional
     RebillyInstruments.on('instrument-ready', (instrument) => {
         console.info('instrument-ready', instrument);
+
+        const {billingAddress, _raw} = instrument;
+        form.innerHTML = `
+            <h1 style="text-wrap: pretty; line-height: normal; margin-block: 20px;">Thanks, ${billingAddress.firstName} ${billingAddress.lastName}, please, confirm your purchase</h1>
+
+            <h4 style="margin-bottom: 20px">${_raw.paymentInstrument?.type || ' '} ${_raw.paymentInstrument.brand} ****** ${_raw.paymentInstrument?.last4}</h4>
+
+            <div>
+            <input type="checkbox" id="confirm-checkbox">
+            <label for="confirm-checkbox">
+                  I acknowledge and accept the <a href="#">terms and conditions</a>.
+            </label>
+            </div>
+
+            <button id="confirm" class="rebilly-instruments-button" disabled>Confirm</button>
+  `;
+
+        const confirm = document.querySelector('#confirm');
+        confirm.addEventListener('click', makePurchase);
+
+        const confirmCheckbox = document.querySelector('#confirm-checkbox');
+        confirmCheckbox.addEventListener('change', function () {
+            confirm.disabled = !this.checked;
+        })
+
+        async function makePurchase() {
+            try {
+                confirm.disabled = true;
+                confirm.innerText = 'Loading...';
+                await RebillyInstruments.purchase(instrument);
+            } catch (err) {
+                console.log(err)
+            } finally {
+                confirm.disabled = false;
+                confirm.innerText = 'Confirm';
+            }
+        }
+
     });
     RebillyInstruments.on('purchase-completed', (purchase) => {
         console.info('purchase-completed', purchase);
+        form.innerHTML = `
+            <h1 style="text-wrap: pretty; line-height: normal; margin-block: 20px;">:)</h1>
+            <h1 style="text-wrap: pretty; line-height: normal;">Thank you for your purchase!</h1>
+  `;
+
     });
 </script>
 </body>
