@@ -258,13 +258,12 @@
             fontFamily: 'Trebuchet MS, sans-serif' // Website font family
         },
         paymentInstruments: {
-            // address: {
-            //     show: ['email', 'phoneNumber', 'city', 'country'],
-            //     require: ['email', 'phoneNumber', 'city', 'country'],
-            // }
+            address: {
+                show: ['email', 'phoneNumber', 'city', 'country'],
+                require: ['email', 'phoneNumber', 'city', 'country'],
+            }
         },
-        features: {
-        }
+        features: {}
     };
 
     const yearlyCheckbox = document.querySelector('#yearly');
@@ -274,7 +273,6 @@
         if (this.checked) {
             checkboxLabel.innerText = 'Change to monthly pricing';
             RebillyInstruments.update({
-                ...options,
                 items: [
                     {
                         planId: 'premium-membership-yearly',
@@ -294,58 +292,15 @@
         }
     })
 
-    const form = document.querySelector('.rebilly-instruments');
     // Mount Rebilly Instruments
     RebillyInstruments.mount(options);
     // Optional
     RebillyInstruments.on('instrument-ready', (instrument) => {
-        console.info('instrument-ready', instrument);
-
-        const {billingAddress, _raw} = instrument;
-        form.innerHTML = `
-            <h1 style="text-wrap: pretty; line-height: normal; margin-block: 20px;">Thanks, ${billingAddress.firstName} ${billingAddress.lastName}, please, confirm your purchase</h1>
-
-            <h4 style="margin-bottom: 20px">${_raw.paymentInstrument?.type || ' '} ${_raw.paymentInstrument.brand} ****** ${_raw.paymentInstrument?.last4}</h4>
-
-            <div>
-            <input type="checkbox" id="confirm-checkbox">
-            <label for="confirm-checkbox">
-                  I acknowledge and accept the <a href="#">terms and conditions</a>.
-            </label>
-            </div>
-
-            <button id="confirm" class="rebilly-instruments-button" disabled>Confirm</button>
-  `;
-
-        const confirm = document.querySelector('#confirm');
-        confirm.addEventListener('click', makePurchase);
-
-        const confirmCheckbox = document.querySelector('#confirm-checkbox');
-        confirmCheckbox.addEventListener('change', function () {
-            confirm.disabled = !this.checked;
-        })
-
-        async function makePurchase() {
-            try {
-                confirm.disabled = true;
-                confirm.innerText = 'Loading...';
-                await RebillyInstruments.purchase(instrument);
-            } catch (err) {
-                console.log(err)
-            } finally {
-                confirm.disabled = false;
-                confirm.innerText = 'Confirm';
-            }
-        }
-
+        console.info(instrument);
     });
     RebillyInstruments.on('purchase-completed', (purchase) => {
         console.info('purchase-completed', purchase);
-        form.innerHTML = `
-            <h1 style="text-wrap: pretty; line-height: normal; margin-block: 20px;">:)</h1>
-            <h1 style="text-wrap: pretty; line-height: normal;">Thank you for your purchase!</h1>
-  `;
-
+        yearlyCheckbox.disabled = true;
     });
 </script>
 </body>
