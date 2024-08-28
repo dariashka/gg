@@ -257,13 +257,15 @@
             buttonColorText: '#ffffff',
             fontFamily: 'Trebuchet MS, sans-serif' // Website font family
         },
-        paymentInstruments: {
-            address: {
-                show: ['email', 'phoneNumber', 'city', 'country'],
-                require: ['email', 'phoneNumber', 'city', 'country'],
+        i18n: {
+            en: {
+                form: {
+                    bumpOffer: {
+                        title: 'Yes, I want to upgrade!'
+                    }
+                }
             }
-        },
-        features: {}
+        }
     };
 
     const yearlyCheckbox = document.querySelector('#yearly');
