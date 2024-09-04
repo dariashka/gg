@@ -1,308 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friend Finder Villa Rentals - Premium Membership</title>
-    <script src="https://cdn.rebilly.com/instruments/@latest/core.js" type="text/javascript"></script>
-
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        header {
-            background-color: #F9740A;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-        }
-
-        header p {
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .intro h2 {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .intro p {
-            font-size: 1.2em;
-            color: #777;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        .checkbox-wrapper {
-            margin-top: 20px;
-        }
-
-        .membership {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .membership-card {
-            background-color: #fff;
-            padding: 20px;
-            margin: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 600px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .membership-card h3 {
-            font-size: 1.8em;
-            color: #F9740A;
-            margin-bottom: 15px;
-        }
-
-        .membership-card p {
-            font-size: 1em;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        .price {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .price span {
-            font-size: 0.5em;
-            color: #777;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #F9740A;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        .features {
-            margin-top: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .feature-item {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-            text-align: center;
-        }
-
-        .feature-item h4 {
-            color: #F9740A;
-            margin-bottom: 15px;
-        }
-
-        .feature-item p {
-            color: #555;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        footer p {
-            font-size: 1em;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.rebilly.com/instruments/@latest/core.js" type="text/javascript"></script>
+  <title>Friend Finder Villa Rentals - Premium Membership</title>
 </head>
 
 <body>
-
-<!-- Header Section -->
-<header>
+  <!-- Header Section -->
+  <header>
     <h1>Friend Finder Villa Rentals</h1>
     <p>Your gateway to unforgettable villa experiences</p>
-</header>
+  </header>
 
-<div class="container">
+  <div class="container">
     <div style="text-align: center;">
-        <img src="ffvilla.png" alt="Friend Finder Villa Rentals" style="width: 100px;">
+      <img src="ffvilla.png" alt="Friend Finder Villa Rentals" style="width: 100px;">
     </div>
     <!-- Intro Section -->
     <section class="intro">
-        <h2>Upgrade to a Premium Membership<br/>1 WEEK - FREE TRIAL</h2>
-        <p>Unlock exclusive benefits, access to luxury villas, and receive personalized support with our Premium
-            Monthly Membership. Join today and elevate your travel experiences to a whole new level.</p>
+      <h2>Upgrade to a Premium Membership<br />1 WEEK - FREE TRIAL</h2>
+      <p>Unlock exclusive benefits, access to luxury villas, and receive personalized support with our Premium
+        Monthly Membership. Join today and elevate your travel experiences to a whole new level.</p>
 
-        <div class="checkbox-wrapper">
-            <!-- checkbox-->
-            <input type="checkbox" id="yearly"/>
-            <label for="yearly" class="">Change to yearly pricing</label>
-        </div>
+      <div class="checkbox-wrapper">
+        <!-- checkbox-->
+        <input type="checkbox" id="yearly" />
+        <label for="yearly" class="">Change to yearly pricing</label>
+      </div>
     </section>
 
     <!-- Membership Plans Section -->
     <section class="membership">
-        <div class="membership-card">
-            <div class="rebilly-instruments-summary"></div>
-            <div class="rebilly-instruments"></div>
-        </div>
+      <div class="membership-card">
+        <div class="rebilly-instruments-summary"></div>
+        <div class="rebilly-instruments"></div>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section class="features">
-        <div class="feature-item">
-            <h4>Exclusive Villas</h4>
-            <p>Access to a curated selection of luxury villas that are not available to regular users.</p>
-        </div>
+      <div class="feature-item">
+        <h4>Exclusive Villas</h4>
+        <p>Access to a curated selection of luxury villas that are not available to regular users.</p>
+      </div>
 
-        <div class="feature-item">
-            <h4>Priority Support</h4>
-            <p>Receive top-tier customer support for all your booking needs, any time of the day.</p>
-        </div>
+      <div class="feature-item">
+        <h4>Priority Support</h4>
+        <p>Receive top-tier customer support for all your booking needs, any time of the day.</p>
+      </div>
 
-        <div class="feature-item">
-            <h4>Special Discounts</h4>
-            <p>Enjoy exclusive discounts on villa rentals, saving you money on your next vacation.</p>
-        </div>
+      <div class="feature-item">
+        <h4>Special Discounts</h4>
+        <p>Enjoy exclusive discounts on villa rentals, saving you money on your next vacation.</p>
+      </div>
 
-        <div class="feature-item">
-            <h4>Personalized Recommendations</h4>
-            <p>Get personalized villa recommendations based on your preferences and past bookings.</p>
-        </div>
+      <div class="feature-item">
+        <h4>Personalized Recommendations</h4>
+        <p>Get personalized villa recommendations based on your preferences and past bookings.</p>
+      </div>
     </section>
-</div>
+    <section style="text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid gray">
+      <a href="donations.html" class="btn">Make a donation</a>
+    </section>
+  </div>
 
-<!-- Footer Section -->
-<footer>
+  <!-- Footer Section -->
+  <footer>
     <p>&copy; 2024 Friend Finder Villa Rentals. All rights reserved.</p>
     <p><a href="#" style="color: #F9740A;">Privacy Policy</a> | <a href="#" style="color: #F9740A;">Terms of
         Service</a></p>
-</footer>
-
-<script>
-    let options = {
-        publishableKey: 'pk_sandbox_MGxmn6NR0X-AggKVIog13TJZDzpiEuMbh8HeLih',
-        organizationId: 'phronesis-friendfinder',
-        websiteId: 'www.ff.com',
-        apiMode: 'sandbox',
-        items: [
-            {
-                planId: 'premium-membership-monthly',
-                quantity: 1,
-            }
-        ],
-        addons: [
-            {
-                planId: 'personalized-travel-plan',
-                quantity: 1
-            }
-        ],
-        bumpOffer: [
-            {
-                planId: 'platinum-membership-monthly',
-                quantity: 1,
-            }
-        ],
-        theme: {
-            colorPrimary: '#F9740A', // Brand color
-            colorText: '#333333', // Text color
-            colorDanger: '#F9740A',
-            buttonColorText: '#ffffff',
-            fontFamily: 'Trebuchet MS, sans-serif' // Website font family
-        },
-        i18n: {
-            en: {
-                form: {
-                    bumpOffer: {
-                        title: 'Yes, I want to upgrade!'
-                    }
-                }
-            }
-        }
-    };
-
-    const yearlyCheckbox = document.querySelector('#yearly');
-    const checkboxLabel = document.querySelector('.checkbox-wrapper label');
-
-    yearlyCheckbox.addEventListener('change', function () {
-        if (this.checked) {
-            checkboxLabel.innerText = 'Change to monthly pricing';
-            RebillyInstruments.update({
-                items: [
-                    {
-                        planId: 'premium-membership-yearly',
-                        quantity: 1,
-                    }
-                ],
-                bumpOffer: [
-                    {
-                        planId: 'platinum-membership-yearly',
-                        quantity: 1,
-                    }
-                ],
-            })
-        } else {
-            checkboxLabel.innerText = 'Change to yearly pricing';
-            RebillyInstruments.update(options);
-        }
-    })
-
-    // Mount Rebilly Instruments
-    RebillyInstruments.mount(options);
-    // Optional
-    RebillyInstruments.on('instrument-ready', (instrument) => {
-        console.info(instrument);
-    });
-    RebillyInstruments.on('purchase-completed', (purchase) => {
-        console.info('purchase-completed', purchase);
-        yearlyCheckbox.disabled = true;
-    });
-</script>
+  </footer>
+  <script type="module" src="/main.js"></script>
 </body>
+
+</html>
