@@ -1,0 +1,204 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background-color: #F9740A;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5em;
+}
+
+header p {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  font-size: 1.2em;
+  color: #777;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.checkbox-wrapper {
+  margin-top: 20px;
+}
+
+.membership {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.membership-card {
+  background-color: #fff;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.membership-card h3 {
+  font-size: 1.8em;
+  color: #F9740A;
+  margin-bottom: 15px;
+}
+
+.membership-card p {
+  font-size: 1em;
+  color: #555;
+  line-height: 1.5;
+}
+
+.price {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.price span {
+  font-size: 0.5em;
+  color: #777;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #F9740A;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.features {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.feature-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+}
+
+.feature-item h4 {
+  color: #F9740A;
+  margin-bottom: 15px;
+}
+
+.feature-item p {
+  color: #555;
+}
+
+.donation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.donation-button {
+  color: #F9740A;
+  border: 1px solid #F9740A;
+  background-color: white;
+  padding: 16px 32px;
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.donation-button.is-active,
+.donation-button:hover,
+#make-donation {
+  background-color: #F9740A;
+  border: 1px solid #F9740A;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.donation-input {
+  border: 1px solid #F9740A;
+  padding: 16px 32px;
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+footer p {
+  font-size: 1em;
+}
