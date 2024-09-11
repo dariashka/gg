@@ -117,6 +117,12 @@ header p {
   border-radius: 50px;
   font-size: 1.2em;
   transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.5;
 }
 
 .btn:hover {
