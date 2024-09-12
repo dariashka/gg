@@ -162,7 +162,8 @@ header p {
   flex-direction: column;
 }
 
-.donation-button {
+.donation-button,
+.deposit-button {
   color: #F9740A;
   border: 1px solid #F9740A;
   background-color: white;
@@ -176,7 +177,10 @@ header p {
 
 .donation-button.is-active,
 .donation-button:hover,
-#make-donation {
+.deposit-button.is-active,
+.deposit-button:hover,
+#make-donation,
+#make-deposit {
   background-color: #F9740A;
   border: 1px solid #F9740A;
   color: white;
@@ -187,7 +191,8 @@ header p {
   cursor: pointer;
 }
 
-.donation-input {
+.donation-input,
+.deposit-input {
   border: 1px solid #F9740A;
   padding: 16px 32px;
   border-radius: 6px;

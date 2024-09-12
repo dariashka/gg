@@ -9,31 +9,22 @@ const api = RebillyAPI({
 
 const state = {
     customerId: 'cus_01J7CH07DZGYKT0PZTQ3RE8C9H',
+    fullAmount: 500,
+    percetange: '20',
+    customAmount: '',
+    amount: 0,
     token: null,
-    depositId: null,
-};
-
-const options = {
-    apiMode: 'sandbox',
-    theme: {
-        colorPrimary: '#F9740A', // Brand color
-        colorText: '#333333', // Text color
-        colorDanger: '#F9740A',
-        buttonColorText: '#ffffff',
-        fontFamily: 'Trebuchet MS, sans-serif' // Website font family
-    },
-    i18n: {
-        en: {
-            result: {
-                success: 'You are all set! Start packing your bags!',
-            }
-        }
-    }
+    invoiceId: null,
+    transactionId: null,
+    hpfLink: null,
 };
 
 const buttons = document.querySelectorAll('.btn');
+const depositButton = document.querySelectorAll('.deposit-button');
+const depositInput = document.querySelector('.deposit-input');
 const features = document.querySelector('section.features');
 const deposit = document.querySelector('section.deposit');
+const makeDepositButton = document.getElementById('make-deposit');
 
 deposit.style.display = 'none';
 
@@ -41,104 +32,89 @@ buttons.forEach(button => {
     button.addEventListener('click', async (e) => {
         e.preventDefault();
         
-        await getToken();
-        await createDeposit();
-        mountRebillyInstruments();
+        features.style.display = 'none';
+        deposit.style.display = 'block';
     });
 });
+
+depositButton.forEach(button => {
+    button.addEventListener('click', async (e) => {
+        depositInput.value = '';
+        state.customAmount = '';
+        depositButton.forEach(b => b.classList.remove('is-active'));
+        e.preventDefault();
+        state.percetange = button.dataset.deposit;
+        e.target.classList.add('is-active');
+        updateAmount();
+    });
+});
+
+depositInput.addEventListener('input', ({target}) => {
+    state.customAmount = target.value;
+    updateAmount();
+});
+
+makeDepositButton.addEventListener('click', async () => {
+    if (state.customAmount && depositInput.checkValidity() === false) {
+        depositInput.reportValidity();
+        return;
+    }
+
+    updateAmount();
+    toggleButtons();
+    await createOrder();
+    await createTransaction();
+    toggleButtons();
+});
+
+function updateAmount() {
+    state.amount = state.customAmount ? Number(state.customAmount) : state.fullAmount * (Number(state.percetange) / 100);
+    makeDepositButton.innerHTML = `Continue with $${state.amount}.00`;
+}
+
+async function createOrder() {
+    const sub = await api.subscriptions.create({
+        data: {
+            orderType: 'one-time-order',
+            customerId: state.customerId,
+            websiteId: 'www.ff.com',
+            items: [
+                { 
+                    plan: {
+                        id: 'rent-villa-base',
+                    },
+                    quantity: 1,
+                },
+            ],
+        }
+    });
+
+    state.invoiceId = sub.fields.recentInvoiceId;
+}
+
+async function createTransaction() {
+    const transaction = await api.transactions.create({
+        data: {
+            customerId: state.customerId,
+            type: 'sale',
+            currency: 'USD',
+            amount: state.amount,
+            websiteId: 'www.ff.com',
+            isMerchantInitiated: true,
+            isProcessedOutside: false,
+            paymentInstruction: {methods: []},
+            methods: [],
+            invoiceIds: [state.invoiceId],
+        }
+    });
+
+    state.transactionId = transaction.fields.id;
+    state.hpfLink = transaction.fields._links.find(link => link.rel === 'approvalUrl').href;
+    window.open(state.hpfLink, '_blank');
+}
 
 function toggleButtons() {
     buttons.forEach(button => {
         button.disabled = !button.disabled ;
-    });
-}
-
-async function getToken() {
-    toggleButtons();
-    const { fields: login } = await api.customerAuthentication.login({
-        data: {
-            mode: "passwordless",
-            customerId: state.customerId,
-        },
-    });
-
-    const { fields: exchangeToken } =
-    await api.customerAuthentication.exchangeToken({
-        token: login.token,
-        data: {
-            acl: [
-                {
-                    scope: {
-                        organizationId: ['phronesis-friendfinder'],
-                    },
-                    permissions: [
-                        "PostToken",
-                        "PostDigitalWalletValidation",
-                        "StorefrontGetAccount",
-                        "StorefrontPatchAccount",
-                        "StorefrontPostPayment",
-                        "StorefrontGetTransactionCollection",
-                        "StorefrontGetTransaction",
-                        "StorefrontGetPaymentInstrumentCollection",
-                        "StorefrontPostPaymentInstrument",
-                        "StorefrontGetPaymentInstrument",
-                        "StorefrontPatchPaymentInstrument",
-                        "StorefrontPostPaymentInstrumentDeactivation",
-                        "StorefrontGetWebsite",
-                        "StorefrontGetInvoiceCollection",
-                        "StorefrontGetInvoice",
-                        "StorefrontGetProductCollection",
-                        "StorefrontGetProduct",
-                        "StorefrontPostReadyToPay",
-                        "StorefrontGetPaymentInstrumentSetup",
-                        "StorefrontPostPaymentInstrumentSetup",
-                        "StorefrontGetDepositRequest",
-                        "StorefrontGetDepositStrategy",
-                        "StorefrontPostDeposit",
-                    ],
-                },
-            ],
-            customClaims: {
-                websiteId: 'www.ff.com',
-            },
-        },
-    });
-    state.token = exchangeToken.token;
-    toggleButtons();
-}
-
-async function createDeposit() {
-    const { fields: depositFields } = await api.depositRequests.create({
-        data: {
-            "websiteId": "www.ff.com",
-            "customerId": "cus_01J7CH07DZGYKT0PZTQ3RE8C9H",
-            "currency": "USD",
-            "strategyId": "dep_str_01J7GTSN97A6HCQJTVKJ4XCN51",
-        }
-    });
-
-    state.depositId = depositFields.id;
-}
-
-function mountRebillyInstruments() {
-    features.style.display = 'none';
-    options.deposit = { depositRequestId: state.depositId };
-    options.jwt = state.token;
-
-    deposit.style.display = 'block';
-
-    // Mount Rebilly Instruments
-    RebillyInstruments.mount(options);
-    // Optional
-    RebillyInstruments.on('instrument-ready', (instrument) => {
-        console.info(instrument);
-    });
-    RebillyInstruments.on('purchase-completed', (purchase) => {
-        console.info('purchase-completed', purchase);
-
-        const head = document.createElement('h2');
-        head.textContent = 'Our team will contact you shortly to confirm your booking.';
-        head.style.textAlign = 'center';
-        document.querySelector('footer').insertAdjacentHTML('beforebegin', head.outerHTML);
     });
 }
