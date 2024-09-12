@@ -52,10 +52,14 @@
 
     <section class="deposit">
         <div class="membership-card" style="margin-inline: auto;">
-            <div class="instruments-wrappper">
-                <div class="rebilly-instruments-summary"></div>
-                <div style="width: 100%; height: 1px; background-color: coral; margin: 28px 0;"></div>
-                <div class="rebilly-instruments"></div>
+            <div class="deposit-form">
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button class="deposit-button is-active" data-deposit="20">20%</button>
+                    <button class="deposit-button" data-deposit="30">30%</button>
+                    <button class="deposit-button" data-deposit="50">50%</button>
+                </div>
+                <input class="deposit-input" min="10" max="500" type="number" placeholder="Enter custom amount">
+                <button id="make-deposit">Continue with $100.00</button>
             </div>
         </div>
     </section>
