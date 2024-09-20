@@ -9,6 +9,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         donations: resolve(__dirname, 'donations.html'),
         villas: resolve(__dirname, 'villas.html'),
+        profile: resolve(__dirname, 'profile.html'),
       },
     },
   },

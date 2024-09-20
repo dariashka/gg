@@ -1,178 +1,217 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* General Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 header {
-  background-color: #F9740A;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
+    background-color: #F9740A;
+    color: #fff;
+    padding: 0 0 40px;
+    text-align: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .logo a {
+    height: 45px;
+}
+
+header .logo img {
+    width: 45px;
+}
+
+header .logo p {
+    margin: 0;
+    line-height: 1;
+    font-weight: bold;
 }
 
 header h1 {
-  font-size: 2.5em;
+    font-size: 2.5em;
+    line-height: 1;
 }
 
 header p {
-  font-size: 1.2em;
-  margin-top: 10px;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+header section {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+header section .btn {
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    line-height: 1;
+    margin-left: 6px;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
 }
 
 .intro {
-  text-align: center;
-  margin-bottom: 40px;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .intro h2 {
-  font-size: 2em;
-  color: #333;
-  margin-bottom: 10px;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .intro p {
-  font-size: 1.2em;
-  color: #777;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.5;
+    font-size: 1.2em;
+    color: #777;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
 }
 
 .checkbox-wrapper {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .membership {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .membership-card {
-  background-color: #fff;
-  padding: 20px;
-  margin: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 600px;
-  text-align: center;
-  transition: transform 0.3s ease;
+    background-color: #fff;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    text-align: center;
+    transition: transform 0.3s ease;
 }
 
 .membership-card h3 {
-  font-size: 1.8em;
-  color: #F9740A;
-  margin-bottom: 15px;
+    font-size: 1.8em;
+    color: #F9740A;
+    margin-bottom: 15px;
 }
 
 .membership-card p {
-  font-size: 1em;
-  color: #555;
-  line-height: 1.5;
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
 }
 
 .price {
-  font-size: 2em;
-  color: #333;
-  margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .price span {
-  font-size: 0.5em;
-  color: #777;
+    font-size: 0.5em;
+    color: #777;
 }
 
 .btn {
-  display: inline-block;
-  padding: 12px 25px;
-  background-color: #F9740A;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 50px;
-  font-size: 1.2em;
-  transition: background-color 0.3s ease;
-  border: none;
-  cursor: pointer;
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #F9740A;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:disabled {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 .btn:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 .features {
-  margin-top: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .feature-item {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
-  text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: center;
 }
 
 .feature-item h4 {
-  color: #F9740A;
-  margin-bottom: 15px;
+    color: #F9740A;
+    margin-bottom: 15px;
 }
 
 .feature-item p {
-  color: #555;
+    color: #555;
 }
 
 .donation-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .donation-button,
 .deposit-button {
-  color: #F9740A;
-  border: 1px solid #F9740A;
-  background-color: white;
-  padding: 16px 32px;
-  border-radius: 6px;
-  font-size: 1rem;
-  line-height: 1rem;
-  cursor: pointer;
-  width: 100%;
+    color: #F9740A;
+    border: 1px solid #F9740A;
+    background-color: white;
+    padding: 16px 32px;
+    border-radius: 6px;
+    font-size: 1rem;
+    line-height: 1rem;
+    cursor: pointer;
+    width: 100%;
 }
 
 .donation-button.is-active,
@@ -181,35 +220,133 @@ header p {
 .deposit-button:hover,
 #make-donation,
 #make-deposit {
-  background-color: #F9740A;
-  border: 1px solid #F9740A;
-  color: white;
-  padding: 16px 32px;
-  border-radius: 6px;
-  font-size: 1rem;
-  width: 100%;
-  cursor: pointer;
+    background-color: #F9740A;
+    border: 1px solid #F9740A;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
 }
 
 .donation-input,
 .deposit-input {
-  border: 1px solid #F9740A;
-  padding: 16px 32px;
-  border-radius: 6px;
-  font-size: 1rem;
-  line-height: 1rem;
-  margin-bottom: 20px;
-  width: 100%;
+    border: 1px solid #F9740A;
+    padding: 16px 32px;
+    border-radius: 6px;
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
 }
 
 footer p {
-  font-size: 1em;
+    font-size: 1em;
+}
+
+/* Profile tabs */
+
+.tabbed {
+    overflow-x: hidden; /* so we could easily hide the radio inputs */
+    margin: 32px 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+.tabbed [type="radio"] {
+    /* hiding the inputs */
+    display: none;
+}
+
+.tabs {
+    display: flex;
+    align-items: stretch;
+    list-style: none;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab > label {
+    display: block;
+    margin-bottom: -1px;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    background: #eee;
+    color: #666;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.tab:hover label {
+    border-top-color: #333;
+    color: #333;
+}
+
+.tab-content {
+    display: none;
+    color: #777;
+    padding-block: 20px;
+}
+
+/* As we cannot replace the numbers with variables or calls to element properties, the number of this selector parts is our tab count limit */
+.tabbed [type="radio"]:nth-of-type(1):checked ~ .tabs .tab:nth-of-type(1) label,
+.tabbed [type="radio"]:nth-of-type(2):checked ~ .tabs .tab:nth-of-type(2) label,
+.tabbed [type="radio"]:nth-of-type(3):checked ~ .tabs .tab:nth-of-type(3) label,
+.tabbed [type="radio"]:nth-of-type(4):checked ~ .tabs .tab:nth-of-type(4) label,
+.tabbed [type="radio"]:nth-of-type(5):checked ~ .tabs .tab:nth-of-type(5) label {
+    border-bottom-color: #fff;
+    border-top-color: #F9740A;
+    background: #fff;
+    color: #222;
+}
+
+.tabbed [type="radio"]:nth-of-type(1):checked ~ .tab-content:nth-of-type(1),
+.tabbed [type="radio"]:nth-of-type(2):checked ~ .tab-content:nth-of-type(2),
+.tabbed [type="radio"]:nth-of-type(3):checked ~ .tab-content:nth-of-type(3),
+.tabbed [type="radio"]:nth-of-type(4):checked ~ .tab-content:nth-of-type(4) {
+    display: block;
+}
+
+/* Table */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th.align-right,
+td.align-right {
+    text-align: right;
+}
+
+td.actions {
+    text-align: center;
+}
+
+td.actions a {
+    color: #F9740A;
+}
+
+#loading {
+    text-align: center;
+    padding: 40px 0;
+    font-weight: bold;
 }
