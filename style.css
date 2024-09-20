@@ -69,7 +69,7 @@ header section {
     margin-bottom: 40px;
 }
 
-header section .btn {
+header section .header-button {
     border: 1px solid #fff;
     padding: 8px 20px;
     line-height: 1;
@@ -147,7 +147,8 @@ header section .btn {
     color: #777;
 }
 
-.btn {
+.btn,
+.header-button {
     display: inline-block;
     padding: 12px 25px;
     background-color: #F9740A;
