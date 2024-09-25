@@ -1,4 +1,3 @@
-import './style.css';
 import RebillyAPI from 'rebilly-js-sdk';
 
 const api = RebillyAPI({

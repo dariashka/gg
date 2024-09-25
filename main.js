@@ -1,5 +1,3 @@
-import './style.css'
-
 let options = {
   publishableKey: 'pk_sandbox_MGxmn6NR0X-AggKVIog13TJZDzpiEuMbh8HeLih',
   organizationId: 'phronesis-friendfinder',
@@ -36,8 +34,14 @@ let options = {
               bumpOffer: {
                   title: 'Yes, I want to upgrade!'
               }
-          }
+          },
+          consentCheck: {
+            agreeToTOS: 'I agree to the [terms and conditions](https://www.example.com/tos), and [subscription billing policy](https://www.example.com/tos).',
+          },
       }
+  },
+  features: {
+    showConsentCheck: ['confirmation'],
   }
 };
 
