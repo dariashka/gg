@@ -29,7 +29,7 @@ body {
     flex-direction: column;
 }
 
-header {
+header:not(.rebilly-instruments-error-card-header) {
     background-color: #F9740A;
     color: #fff;
     padding: 0 0 40px;
@@ -84,11 +84,17 @@ header section .header-button {
     font-size: 1rem;
 }
 
-.container {
-    max-width: 1200px;
+.container,
+.product {
+    width: clamp(300px, 100%, 1200px);
     margin: 20px auto;
     padding: 0 20px;
     flex: 1 0 auto;
+}
+
+.container.hide,
+.product.hide {
+    display: none;
 }
 
 .intro {
@@ -114,13 +120,15 @@ header section .header-button {
     margin-top: 20px;
 }
 
-.membership {
+.membership,
+.product {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.membership-card {
+.membership-card,
+.product-card {
     background-color: #fff;
     padding: 20px;
     margin: 15px;
@@ -131,13 +139,15 @@ header section .header-button {
     transition: transform 0.3s ease;
 }
 
-.membership-card h3 {
+.membership-card h3,
+.product-card h3 {
     font-size: 1.8em;
     color: #F9740A;
     margin-bottom: 15px;
 }
 
-.membership-card p {
+.membership-card p,
+.product-card p {
     font-size: 1em;
     color: #555;
     line-height: 1.5;
@@ -193,9 +203,25 @@ header section .header-button {
     text-align: center;
 }
 
-.feature-item h4 {
+.store-item {
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.store-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature-item h4,
+.feature-item h3 {
     color: #F9740A;
     margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    line-height: 1.2;
+    margin-bottom: 20px;
 }
 
 .feature-item p {
@@ -376,6 +402,24 @@ td.actions a {
     }
 }
 
+.debriefs-container img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 12px;
+    margin-bottom: 0;
+    border: 1px solid #ccc;
+}
+
+.debriefs-container.is-project small {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    font-weight: 500;
+}
+
 .debriefs-container.is-project,
 .debriefs-container.is-project * {
     text-align: left;
@@ -407,4 +451,166 @@ td.actions a {
 .debrief-link:hover {
     background-color: #F9740A;
     color: white;
+}
+
+/* Product */
+.product-feature {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+.product-image {
+    flex: 1;
+    min-width: 300px;
+}
+.product-details {
+    flex: 1;
+    min-width: 300px;
+}
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #F9740A;
+    margin: 1rem 0;
+}
+.product-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 1rem 0;
+}
+.quantity-picker {
+    margin-bottom: 4rem;
+}
+.quantity-picker label {
+    margin-right: 0.5rem;
+}
+.quantity-picker input {
+    width: 60px;
+    padding: 0.25rem;
+}
+.buy-now-btn {
+    background-color: #F9740A;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.buy-now-btn:hover {
+    background-color: #d86200;
+}
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.carousel-inner {
+    width: 100%;
+    position: relative;
+}
+.carousel-open:checked + .carousel-item {
+    position: static;
+    opacity: 1;
+}
+.carousel-item {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 100%;
+}
+.carousel-item img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+}
+.carousel-control {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    font-size: 40px;
+    height: 40px;
+    line-height: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+    width: 40px;
+    z-index: 10;
+}
+.carousel-control.prev {
+    left: 2%;
+}
+.carousel-control.next {
+    right: 2%;
+}
+.carousel-control:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+#carousel-1:checked ~ .control-1,
+#carousel-2:checked ~ .control-2,
+#carousel-3:checked ~ .control-3 {
+    display: block;
+}
+.carousel-indicators {
+    list-style: none;
+    padding: 0 10px;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    z-index: 10;
+    right: 50%;
+    transform: translateX(50%);
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 1rem;
+}
+.carousel-indicators li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.carousel-bullet {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 35px;
+    line-height: 1;
+}
+.carousel-bullet:hover {
+    color: #aaaaaa;
+}
+#carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+#carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+#carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+    color: #d86200;
+}
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #F9740A;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
