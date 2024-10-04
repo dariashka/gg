@@ -1,4 +1,4 @@
-import { getLocalStore, setLocalStore, clearLocalStore } from './local-store.js';
+import { getLocalStore } from './local-store.js';
 import RebillyAPI from 'rebilly-js-sdk';
 
 const api = RebillyAPI({
@@ -11,6 +11,8 @@ const store = getLocalStore();
 
 const state = {
     quantity: {},
+    containerEl: document.querySelector('.container'),
+    productEl: document.querySelector('.product'),
     hasTwoProducts: false,
     quantityPicker: null,
     buyBtn: null,
@@ -19,9 +21,6 @@ const state = {
     products: [],
     plans: [],
 };
-
-const container = document.querySelector('.container');
-const product = document.querySelector('.product');
 
 const framepayOptions = {
     publishableKey: 'pk_sandbox_MGxmn6NR0X-AggKVIog13TJZDzpiEuMbh8HeLih',
@@ -37,28 +36,23 @@ const framepayOptions = {
     },  
 }
 
-
 async function init() {
     const { selectedProduct, selectedPlanId } = store;
-    const products = selectedProduct.split(', ').filter(Boolean);
-    const plans = selectedPlanId.split(', ').filter(Boolean);
-    state.productsId = products;
-    state.plansId = plans;
+    state.productsId = selectedProduct.split(', ').filter(Boolean);
+    state.plansId = selectedPlanId.split(', ').filter(Boolean);
 
     state.hasTwoProducts = state.productsId.length > 1;
-    state.plansId.forEach(planId => {
-        state.quantity[planId] = '1';
-    });
+    state.plansId.forEach(planId => { state.quantity[planId] = '1'; });
 
     try {
-        container.innerHTML = '<div class="loader"></div>';
-        await fetchProductAndPlansDetails(products);
+        state.containerEl.innerHTML = '<div class="loader"></div>';
+        await fetchProductAndPlansDetails();
     } catch (error) {
         console.error(error);
         throw new Error('Failed to fetch product and plans details');
     }
 
-    displayProduct({product1: products[0], product2: state.hasTwoProducts ? products[1] : null});
+    displayProduct();
     bindEvents();
 }
 
@@ -100,8 +94,8 @@ function bindEvents() {
 }
 
 function buy() {
-    container.classList.add('hide');
-    product.classList.remove('hide');
+    state.containerEl.classList.add('hide');
+    state.productEl.classList.remove('hide');
 
     framepayOptions.items = state.plansId.map(planId => ({
         planId,
@@ -116,18 +110,15 @@ function buy() {
             }
         ]
     }
-    console.log(framepayOptions)
-    // Mount Rebilly Instruments
+
     RebillyInstruments.mount(framepayOptions);
 }
 
-function displayProduct({product1, product2} = {product1: '', product2: null}) {
-    const stateProduct1 = state.products[0];
-    const stateProduct2 = state.hasTwoProducts ? state.products[1] : null;
-    const statePlan1 = state.plans[0];
-    const statePlan2 = state.hasTwoProducts ? state.plans[1] : null;
+function displayProduct() {
+    const [stateProduct1, stateProduct2] = state.products;
+    const [statePlan1, statePlan2] = state.plans
 
-    container.innerHTML = `
+    state.containerEl.innerHTML = `
         <section class="product-feature">
             <div class="product-image">
                 <div class="carousel">
@@ -172,7 +163,7 @@ function displayProduct({product1, product2} = {product1: '', product2: null}) {
                     <label for="quantity">Quantity:</label>
                     <input type="number" id="quantity" name="quantity" min="1" value="1" data-plan="${statePlan1.id}">
                 </div>
-                ${product2 ? `
+                ${state.hasTwoProducts ? `
                     <div class="product-divider"></div>
                     <h2>${stateProduct2.name}</h2>
                     <p>${stateProduct2.description}</p>
