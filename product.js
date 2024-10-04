@@ -33,7 +33,13 @@ const framepayOptions = {
         colorDanger: '#F9740A',
         buttonColorText: '#ffffff',
         fontFamily: 'Trebuchet MS, sans-serif' // Website font family
-    },  
+    },
+    css: `
+        .rebilly-instruments-summary-line-item-figure img {
+            width: 100px;
+            height: 100px;
+        }
+    `,
 }
 
 async function init() {
@@ -98,6 +104,7 @@ function buy() {
     state.productEl.classList.remove('hide');
 
     framepayOptions.items = state.plansId.map(planId => ({
+        thumbnail: `https://i.ibb.co/tpf6C4C/villa-1.png`,
         planId,
         quantity: Number(state.quantity[planId]),
     }));
