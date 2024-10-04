@@ -20,6 +20,7 @@ const state = {
     plansId: [],
     products: [],
     plans: [],
+    pricingEls: [],
 };
 
 const framepayOptions = {
@@ -76,7 +77,7 @@ async function fetchProductAndPlansDetails() {
     }
 }
 
-function displayPrice(price) {
+function formatPrice(price) {
     const newIntl = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -92,6 +93,12 @@ function bindEvents() {
         input.addEventListener('change', (e) => {
             const plan = e.target.getAttribute('data-plan');
             state.quantity[plan] = e.target.value;
+
+            const [priceEl1, priceEl2] = state.pricingEls;
+            if (state.hasTwoProducts) {
+                priceEl2.textContent = formatPrice(state.plans[1].pricing.price * Number(state.quantity[state.plansId[1]]));
+            }
+            priceEl1.textContent = formatPrice(state.plans[0].pricing.price * Number(state.quantity[state.plansId[0]]));
         });
     });
     state.buyBtn.addEventListener('click', () => {
@@ -165,7 +172,7 @@ function displayProduct() {
             <div class="product-details">
                 <h2>${stateProduct1.name}</h2>
                 <p>${stateProduct1.description}</p>
-                <p class="price">${displayPrice(statePlan1.pricing.price)}</p>
+                <p class="price">${formatPrice(statePlan1.pricing.price)}</p>
                 <div class="quantity-picker">
                     <label for="quantity">Quantity:</label>
                     <input type="number" id="quantity" name="quantity" min="1" value="1" data-plan="${statePlan1.id}">
@@ -174,7 +181,7 @@ function displayProduct() {
                     <div class="product-divider"></div>
                     <h2>${stateProduct2.name}</h2>
                     <p>${stateProduct2.description}</p>
-                    <p class="price">${displayPrice(statePlan2.pricing.price)}</p>
+                    <p class="price">${formatPrice(statePlan2.pricing.price)}</p>
                     <div class="quantity-picker">
                         <label for="quantity">Quantity:</label>
                         <input type="number" id="quantity" name="quantity" min="1" value="1" data-plan="${statePlan2.id}">
@@ -184,4 +191,6 @@ function displayProduct() {
             </div>
         </section>
     `;
+
+    state.pricingEls = document.querySelectorAll('.price');
 }
