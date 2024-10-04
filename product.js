@@ -1,4 +1,11 @@
 import { getLocalStore, setLocalStore, clearLocalStore } from './local-store.js';
+import RebillyAPI from 'rebilly-js-sdk';
+
+const api = RebillyAPI({
+    apiKey: import.meta.env.VITE_API_KEY,
+    organizationId: 'phronesis-friendfinder',
+    sandbox: true,
+});
 
 const store = getLocalStore();
 
@@ -7,17 +14,40 @@ const state = {
     hasTwoProducts: false,
     quantityPicker: null,
     buyBtn: null,
+    productsId: [],
+    plansId: [],
     products: [],
     plans: [],
 };
+
 const container = document.querySelector('.container');
+const product = document.querySelector('.product');
+
+const framepayOptions = {
+    publishableKey: 'pk_sandbox_MGxmn6NR0X-AggKVIog13TJZDzpiEuMbh8HeLih',
+    organizationId: 'phronesis-friendfinder',
+    websiteId: 'www.ff.com',
+    apiMode: 'sandbox',
+    theme: {
+        colorPrimary: '#F9740A', // Brand color
+        colorText: '#333333', // Text color
+        colorDanger: '#F9740A',
+        buttonColorText: '#ffffff',
+        fontFamily: 'Trebuchet MS, sans-serif' // Website font family
+    },  
+}
+
 
 async function init() {
     const { selectedProduct, selectedPlanId } = store;
     const products = selectedProduct.split(', ').filter(Boolean);
-    state.hasTwoProducts = products.length > 1;
-    products.forEach(product => {
-        state.quantity[product] = '1';
+    const plans = selectedPlanId.split(', ').filter(Boolean);
+    state.productsId = products;
+    state.plansId = plans;
+
+    state.hasTwoProducts = state.productsId.length > 1;
+    state.plansId.forEach(planId => {
+        state.quantity[planId] = '1';
     });
 
     try {
@@ -34,16 +64,24 @@ async function init() {
 
 init();
 
-async function fetchProductAndPlansDetails(products) {
+async function fetchProductAndPlansDetails() {
     // fetch product and plans details
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve({
-                products: ['product1', 'product2'],
-                plans: ['plan1', 'plan2'],
-            });
-        }, 500);
+    for await (const product of state.productsId) {
+        const {fields} = await api.products.get({id: product});
+        state.products.push(fields);
+    }
+    for await (const plan of state.plansId) {
+        const {fields} = await api.plans.get({id: plan});
+        state.plans.push(fields);
+    }
+}
+
+function displayPrice(price) {
+    const newIntl = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
     });
+    return newIntl.format(price);
 }
 
 function bindEvents() {
@@ -52,18 +90,43 @@ function bindEvents() {
 
     state.quantityPicker.forEach(input => {
         input.addEventListener('change', (e) => {
-            const product = e.target.getAttribute('data-product');
-            state.quantity[product] = e.target.value;
-            console.log(state.quantity);
+            const plan = e.target.getAttribute('data-plan');
+            state.quantity[plan] = e.target.value;
         });
     });
     state.buyBtn.addEventListener('click', () => {
-        console.log('buy now');
-        // display framepay or send to payment page
+        buy();
     });
 }
 
+function buy() {
+    container.classList.add('hide');
+    product.classList.remove('hide');
+
+    framepayOptions.items = state.plansId.map(planId => ({
+        planId,
+        quantity: Number(state.quantity[planId]),
+    }));
+
+    if (state.productsId.includes('ebook')) {
+        framepayOptions.bumpOffer = [
+            {
+                planId: 'basic',
+                quantity: 1,
+            }
+        ]
+    }
+    console.log(framepayOptions)
+    // Mount Rebilly Instruments
+    RebillyInstruments.mount(framepayOptions);
+}
+
 function displayProduct({product1, product2} = {product1: '', product2: null}) {
+    const stateProduct1 = state.products[0];
+    const stateProduct2 = state.hasTwoProducts ? state.products[1] : null;
+    const statePlan1 = state.plans[0];
+    const statePlan2 = state.hasTwoProducts ? state.plans[1] : null;
+
     container.innerHTML = `
         <section class="product-feature">
             <div class="product-image">
@@ -102,21 +165,21 @@ function displayProduct({product1, product2} = {product1: '', product2: null}) {
                 </div>
             </div>
             <div class="product-details">
-                <h2>${product1}</h2>
-                <p>Kickstart your villa rental business with our comprehensive starter kit. Includes essential guides, marketing materials, and exclusive software access.</p>
-                <p class="price">$499.99</p>
+                <h2>${stateProduct1.name}</h2>
+                <p>${stateProduct1.description}</p>
+                <p class="price">${displayPrice(statePlan1.pricing.price)}</p>
                 <div class="quantity-picker">
                     <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" min="1" value="1" data-product="${product1}">
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" data-plan="${statePlan1.id}">
                 </div>
                 ${product2 ? `
                     <div class="product-divider"></div>
-                    <h2>${product2}</h2>
-                    <p>Kickstart your villa rental business with our comprehensive starter kit. Includes essential guides, marketing materials, and exclusive software access.</p>
-                    <p class="price">$499.99</p>
+                    <h2>${stateProduct2.name}</h2>
+                    <p>${stateProduct2.description}</p>
+                    <p class="price">${displayPrice(statePlan2.pricing.price)}</p>
                     <div class="quantity-picker">
                         <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" min="1" value="1" data-product="${product2}">
+                        <input type="number" id="quantity" name="quantity" min="1" value="1" data-plan="${statePlan2.id}">
                     </div>
                 ` : ''}
                 <button class="buy-now-btn">Buy Now</button>

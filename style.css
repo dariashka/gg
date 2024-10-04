@@ -29,7 +29,7 @@ body {
     flex-direction: column;
 }
 
-header {
+header:not(.rebilly-instruments-error-card-header) {
     background-color: #F9740A;
     color: #fff;
     padding: 0 0 40px;
@@ -84,11 +84,17 @@ header section .header-button {
     font-size: 1rem;
 }
 
-.container {
+.container,
+.product {
     width: clamp(300px, 100%, 1200px);
     margin: 20px auto;
     padding: 0 20px;
     flex: 1 0 auto;
+}
+
+.container.hide,
+.product.hide {
+    display: none;
 }
 
 .intro {
@@ -114,13 +120,15 @@ header section .header-button {
     margin-top: 20px;
 }
 
-.membership {
+.membership,
+.product {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.membership-card {
+.membership-card,
+.product-card {
     background-color: #fff;
     padding: 20px;
     margin: 15px;
@@ -131,13 +139,15 @@ header section .header-button {
     transition: transform 0.3s ease;
 }
 
-.membership-card h3 {
+.membership-card h3,
+.product-card h3 {
     font-size: 1.8em;
     color: #F9740A;
     margin-bottom: 15px;
 }
 
-.membership-card p {
+.membership-card p,
+.product-card p {
     font-size: 1em;
     color: #555;
     line-height: 1.5;
@@ -390,6 +400,24 @@ td.actions a {
         border-radius: 4px;
         font-weight: 600;
     }
+}
+
+.debriefs-container img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 12px;
+    margin-bottom: 0;
+    border: 1px solid #ccc;
+}
+
+.debriefs-container.is-project small {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    font-weight: 500;
 }
 
 .debriefs-container.is-project,
