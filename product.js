@@ -134,15 +134,15 @@ function displayProduct({product1, product2} = {product1: '', product2: null}) {
                     <div class="carousel-inner">
                         <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
                         <div class="carousel-item">
-                            <img src="villa_1.png" alt="Villa Rental Starter Kit">
+                            <img src="https://i.ibb.co/tpf6C4C/villa-1.png" alt="Villa Rental Starter Kit">
                         </div>
                         <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
                         <div class="carousel-item">
-                            <img src="villa_2.png" alt="Villa Rental Starter Kit 2">
+                            <img src="https://i.ibb.co/F426ct5/villa-2.png" alt="Villa Rental Starter Kit 2">
                         </div>
                         <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
                         <div class="carousel-item">
-                            <img src="villa_3.png" alt="Villa Rental Starter Kit 3">
+                            <img src="https://i.ibb.co/Gcfg6TF/villa-3.png" alt="Villa Rental Starter Kit 3">
                         </div>
                         <label for="carousel-3" class="carousel-control prev control-1">‹</label>
                         <label for="carousel-2" class="carousel-control next control-1">›</label>
