@@ -692,9 +692,86 @@ body.funnel {
         font-family: "Inter", sans-serif;
         text-align: left;
         color: #0e141f;
+        position: relative;
 
         fieldset {
             border: none;
+        }
+
+        .form-loader {
+            background: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 9px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &.is-hidden {
+                display: none;
+            }
+
+            .loader {
+                border-top-color: #000;
+            }
+        }
+
+        .rebilly-framepay {
+            height: 38px;
+            border: 1px solid #c0bfcf;
+            box-shadow: none;
+            height: 46px;
+            border-radius: 0;
+        }
+
+        .rebilly-framepay.rebilly-framepay-focus {
+            box-shadow: inset 0 0 0 1px #000;
+        }
+
+        .form-framepay {
+            display: flex;
+            flex-wrap: wrap;
+
+            .framepay-mounting-point {
+                width: 100%;
+
+                .rebilly-framepay {
+                    border-radius: 6px 6px 0 0;
+                }
+            }
+
+            .framepay-exp,
+            .framepay-cvv {
+                width: 50%;
+
+                .rebilly-framepay {
+                    border-top: none;
+                    border-radius: 0 0 0 6px;
+                }
+            }
+
+            .framepay-cvv {
+                .rebilly-framepay {
+                    border-left: none;
+                    border-radius: 0 0 6px 0;
+                }
+            }
+        }
+
+        .form-framepay-errors {
+            border: 1px solid red;
+            background: rgb(255, 240, 240);
+            color: red;
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-top: 12px;
+
+            &:empty {
+                display: none;
+            }
         }
 
         .form-section-label {
@@ -818,10 +895,12 @@ body.funnel {
                     justify-content: space-between;
                     align-items: center;
                     label {
+                        cursor: pointer;
                         font-weight: 600;
                     }
-
+                    
                     input[type="checkbox"] {
+                        cursor: pointer;
                         margin-right: 4px;
                     }
                 }
@@ -863,6 +942,17 @@ body.funnel {
             .form-product-title {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
+
+                .caret {
+                    width: 10px;
+                    height: 10px;
+                    border: 2px solid #000;
+                    border-top: none;
+                    border-right: none;
+                    border-radius: 2px;
+                    transform: rotate(-45deg);
+                }
             }
             
             .form-summary-items {
@@ -899,6 +989,36 @@ body.funnel {
             display: block;
             margin-top: 20px;
             opacity: 0.6;
+        }
+    }
+
+    .result {
+        text-align: center;
+        display: none;
+
+        table {
+            table-layout: auto;
+            th {
+                border: none;
+                border-bottom: 2px solid #000;
+            }
+
+            tr.totals {
+                td {
+                    border: none;
+                    padding-top: 4px;
+                    padding-bottom: 4px;
+                    font-weight: bold;
+                }
+
+                &.amount {
+                    td {
+                        padding-top: 12px;
+                        padding-bottom: 12px;
+                        border-top: 2px solid #000
+                    }
+                }
+            }
         }
     }
 }
