@@ -7,6 +7,18 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    --primary-color: #F9740A;
+    --secondary-color: #45a049;
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --muted-text-color: #777;
+    --header-footer-bg-color: #333;
+    --header-footer-text-color: #fff;
+    --input-border-color: #c0bfcf;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --funnel-background-color: #0e141f;
+    --funnel-highlight-color: rgb(0, 176, 255);
 }
 
 /* General Reset */
@@ -23,14 +35,14 @@ html, body {
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
 }
 
 header:not(.rebilly-instruments-error-card-header) {
-    background-color: #F9740A;
+    background-color: var(--primary-color);
     color: #fff;
     padding: 0 0 40px;
     text-align: center;
@@ -76,7 +88,7 @@ header section {
 }
 
 header section .header-button {
-    border: 1px solid #fff;
+    border: 1px solid var(--header-footer-text-color);
     padding: 8px 20px;
     line-height: 1;
     margin-left: 6px;
@@ -104,13 +116,13 @@ header section .header-button {
 
 .intro h2 {
     font-size: 2em;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 
 .intro p {
     font-size: 1.2em;
-    color: #777;
+    color: var(--muted-text-color);;
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.5;
@@ -133,7 +145,7 @@ header section .header-button {
     padding: 20px;
     margin: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
     width: 600px;
     text-align: center;
     transition: transform 0.3s ease;
@@ -142,7 +154,7 @@ header section .header-button {
 .membership-card h3,
 .product-card h3 {
     font-size: 1.8em;
-    color: #F9740A;
+    color: var(--primary-color);
     margin-bottom: 15px;
 }
 
@@ -155,21 +167,21 @@ header section .header-button {
 
 .price {
     font-size: 2em;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 20px;
 }
 
 .price span {
     font-size: 0.5em;
-    color: #777;
+    color: var(--muted-text-color);;
 }
 
 .btn,
 .header-button {
     display: inline-block;
     padding: 12px 25px;
-    background-color: #F9740A;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--header-footer-text-color);
     text-decoration: none;
     border-radius: 50px;
     font-size: 1.2em;
@@ -183,7 +195,7 @@ header section .header-button {
 }
 
 .btn:hover {
-    background-color: #45a049;
+    background-color: var(--secondary-color);
 }
 
 .features {
@@ -194,11 +206,11 @@ header section .header-button {
 }
 
 .feature-item {
-    background-color: #fff;
+    background-color: var(--header-footer-text-color);
     border-radius: 10px;
     padding: 20px;
     margin: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
     max-width: 300px;
     text-align: center;
 }
@@ -215,7 +227,7 @@ header section .header-button {
 
 .feature-item h4,
 .feature-item h3 {
-    color: #F9740A;
+    color: var(--primary-color);
     margin-bottom: 15px;
 }
 
@@ -237,8 +249,8 @@ header section .header-button {
 
 .donation-button,
 .deposit-button {
-    color: #F9740A;
-    border: 1px solid #F9740A;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     background-color: white;
     padding: 16px 32px;
     border-radius: 6px;
@@ -254,8 +266,8 @@ header section .header-button {
 .deposit-button:hover,
 #make-donation,
 #make-deposit {
-    background-color: #F9740A;
-    border: 1px solid #F9740A;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     color: white;
     padding: 16px 32px;
     border-radius: 6px;
@@ -266,7 +278,7 @@ header section .header-button {
 
 .donation-input,
 .deposit-input {
-    border: 1px solid #F9740A;
+    border: 1px solid var(--primary-color);
     padding: 16px 32px;
     border-radius: 6px;
     font-size: 1rem;
@@ -276,7 +288,7 @@ header section .header-button {
 }
 
 footer {
-    background-color: #333;
+    background-color: var(--header-footer-bg-color);
     color: #fff;
     text-align: center;
     padding: 20px;
@@ -324,13 +336,13 @@ footer p {
 }
 
 .tab:hover label {
-    border-top-color: #333;
-    color: #333;
+    border-top-color: var(--header-footer-bg-color);
+    color: var(--text-color);
 }
 
 .tab-content {
     display: none;
-    color: #777;
+    color: var(--muted-text-color);;
     padding-block: 20px;
 }
 
@@ -341,7 +353,7 @@ footer p {
 .tabbed [type="radio"]:nth-of-type(4):checked ~ .tabs .tab:nth-of-type(4) label,
 .tabbed [type="radio"]:nth-of-type(5):checked ~ .tabs .tab:nth-of-type(5) label {
     border-bottom-color: #fff;
-    border-top-color: #F9740A;
+    border-top-color: var(--primary-color);
     background: #fff;
     color: #222;
 }
@@ -376,7 +388,7 @@ td.actions {
 }
 
 td.actions a {
-    color: #F9740A;
+    color: var(--primary-color);
 }
 
 #loading {
@@ -425,7 +437,7 @@ td.actions a {
     text-align: left;
     font-size: 1.2rem;
     line-height: 1.9rem;
-    color: #333;
+    color: var(--text-color);
 
     li + li {
         margin-top: 1.5rem;
@@ -437,7 +449,7 @@ td.actions a {
 }
 
 .debrief-link {
-    color: #F9740A;
+    color: var(--primary-color);
     background-color: white;
     padding: 16px 32px;
     border-radius: 6px;
@@ -449,7 +461,7 @@ td.actions a {
 }
 
 .debrief-link:hover {
-    background-color: #F9740A;
+    background-color: var(--primary-color);
     color: white;
 }
 
@@ -463,41 +475,49 @@ td.actions a {
     background-color: #ffffff;
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 1rem var(--shadow-color);
     margin-top: 2rem;
 }
+
 .product-image {
     flex: 1;
     min-width: 300px;
 }
+
 .product-details {
     flex: 1;
     min-width: 300px;
 }
+
 .price {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #F9740A;
+    color: var(--primary-color);
     margin: 1rem 0;
 }
+
 .product-divider {
     width: 100%;
     height: 1px;
     background-color: #ccc;
     margin: 1rem 0;
 }
+
 .quantity-picker {
     margin-bottom: 4rem;
 }
+
 .quantity-picker label {
     margin-right: 0.5rem;
 }
+
 .quantity-picker input {
     width: 60px;
     padding: 0.25rem;
 }
+
 .buy-now-btn {
-    background-color: #F9740A;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -507,9 +527,11 @@ td.actions a {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
 .buy-now-btn:hover {
     background-color: #d86200;
 }
+
 .carousel {
     position: relative;
     overflow: hidden;
@@ -517,14 +539,17 @@ td.actions a {
     max-width: 600px;
     margin: 0 auto;
 }
+
 .carousel-inner {
     width: 100%;
     position: relative;
 }
+
 .carousel-open:checked + .carousel-item {
     position: static;
     opacity: 1;
 }
+
 .carousel-item {
     position: absolute;
     opacity: 0;
@@ -533,12 +558,14 @@ td.actions a {
     overflow: hidden;
     width: 100%;
 }
+
 .carousel-item img {
     display: block;
     height: auto;
     max-width: 100%;
     width: 100%;
 }
+
 .carousel-control {
     background: rgba(0, 0, 0, 0.8);
     border-radius: 50%;
@@ -555,20 +582,25 @@ td.actions a {
     width: 40px;
     z-index: 10;
 }
+
 .carousel-control.prev {
     left: 2%;
 }
+
 .carousel-control.next {
     right: 2%;
 }
+
 .carousel-control:hover {
     background: rgba(0, 0, 0, 0.8);
 }
+
 #carousel-1:checked ~ .control-1,
 #carousel-2:checked ~ .control-2,
 #carousel-3:checked ~ .control-3 {
     display: block;
 }
+
 .carousel-indicators {
     list-style: none;
     padding: 0 10px;
@@ -581,10 +613,12 @@ td.actions a {
     background: rgba(0, 0, 0, 0.8);
     border-radius: 1rem;
 }
+
 .carousel-indicators li {
     display: inline-block;
     margin: 0 5px;
 }
+
 .carousel-bullet {
     color: #fff;
     cursor: pointer;
@@ -592,17 +626,20 @@ td.actions a {
     font-size: 35px;
     line-height: 1;
 }
+
 .carousel-bullet:hover {
     color: #aaaaaa;
 }
+
 #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
 #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
 #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
     color: #d86200;
 }
+
 .loader {
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #F9740A;
+    border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -611,12 +648,16 @@ td.actions a {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 body.funnel {
-    background-color: #0e141f;
+    background-color: var(--funnel-background-color);
     text-align: center;
     color: #ffffff;
     font-family: "Montserrat", sans-serif;
@@ -630,7 +671,7 @@ body.funnel {
     }
 
     b {
-        color: rgb(0, 176, 255);
+        color: var(--funnel-highlight-color);
     }
 
     span:nth-of-type(1) {
@@ -650,7 +691,7 @@ body.funnel {
     }
 
     span:nth-of-type(3) {
-        color: rgb(0, 176, 255);
+        color: var(--funnel-highlight-color);
         letter-spacing: 0;
         font-size: 5.13rem;
         text-transform: uppercase;
@@ -685,13 +726,13 @@ body.funnel {
     .funnel-form {
         background-color: #ffffff;
         border-radius: 12px;
-        border: 3px solid rgb(0, 176, 255);
+        border: 3px solid var(--funnel-highlight-color);
         padding: 20px 40px 40px 40px;
         width: clamp(70%, 825px, 825px);
         margin: 40px 0;
         font-family: "Inter", sans-serif;
         text-align: left;
-        color: #0e141f;
+        color: var(--funnel-background-color);
         position: relative;
 
         fieldset {
@@ -721,7 +762,7 @@ body.funnel {
 
         .rebilly-framepay {
             height: 38px;
-            border: 1px solid #c0bfcf;
+            border: 1px solid var(--input-border-color);
             box-shadow: none;
             height: 46px;
             border-radius: 0;
@@ -791,7 +832,7 @@ body.funnel {
 
         .field {
             input {
-                border: 1px solid #c0bfcf;
+                border: 1px solid var(--input-border-color);
                 line-height: 20px;
                 padding: 14px 12px;
                 font-size: 16px;
@@ -833,7 +874,7 @@ body.funnel {
                 grid: auto-flow / 1fr;
 
                 .field input {
-                    border: 1px solid #c0bfcf;
+                    border: 1px solid var(--input-border-color);
                     border-radius: 0;
 
                 }
@@ -848,7 +889,7 @@ body.funnel {
                 }
 
                 .field:last-child input {
-                    border-bottom: 1px solid #c0bfcf;
+                    border-bottom: 1px solid var(--input-border-color);
                     border-radius: 0 0 6px 6px;
                 }
             }
@@ -860,7 +901,7 @@ body.funnel {
             border-radius: 6px;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #c0bfcf;
+            border: 1px solid var(--input-border-color);
             color: #000;
 
             .form-product-title {
@@ -894,11 +935,12 @@ body.funnel {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+
                     label {
                         cursor: pointer;
                         font-weight: 600;
                     }
-                    
+
                     input[type="checkbox"] {
                         cursor: pointer;
                         margin-right: 4px;
@@ -910,7 +952,7 @@ body.funnel {
                 }
 
                 input[type="number"] {
-                    border: 1px solid #c0bfcf;
+                    border: 1px solid var(--input-border-color);
                     line-height: 20px;
                     padding: 10px 12px;
                     width: 100px;
@@ -918,7 +960,7 @@ body.funnel {
                     border-radius: 6px;
                     outline: none;
                     margin-top: 12px;
-    
+
                     &:focus {
                         box-shadow: inset 0 0 0 1px #000;
                     }
@@ -935,8 +977,8 @@ body.funnel {
             border-radius: 6px;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #c0bfcf;
-            color: #0e141f;
+            border: 1px solid var(--input-border-color);
+            color: var(--funnel-background-color);
             margin-top: 20px;
 
             .form-product-title {
@@ -954,7 +996,7 @@ body.funnel {
                     transform: rotate(-45deg);
                 }
             }
-            
+
             .form-summary-items {
                 margin-top: 10px;
 
@@ -970,7 +1012,7 @@ body.funnel {
             font-weight: 600;
             font-size: 24px;
             color: #ffffff;
-            background: rgb(0, 176, 255);
+            background: var(--funnel-highlight-color);
             padding: 15px 25px;
             width: 100%;
             line-height: 1;
@@ -998,6 +1040,7 @@ body.funnel {
 
         table {
             table-layout: auto;
+
             th {
                 border: none;
                 border-bottom: 2px solid #000;
@@ -1024,7 +1067,7 @@ body.funnel {
 }
 
 .funnel-banner {
-    background: #0e141f;
+    background: var(--funnel-background-color);
     font-family: "Montserrat", sans-serif;
     padding: 16px 0;
     text-align: center;
@@ -1036,6 +1079,7 @@ body.funnel {
 
     span {
         text-transform: uppercase;
-        color: rgb(0, 176, 255);
+        color: var(--funnel-highlight-color);
     }
 }
+

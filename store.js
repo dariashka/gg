@@ -12,6 +12,6 @@ storeItems.forEach(item => {
         store.selectedProduct = product;
         store.selectedPlanId = plan;
         setLocalStore(store);
-        window.location.href = './product.html';
+        window.location.href = 'product.html';
     });
 });
