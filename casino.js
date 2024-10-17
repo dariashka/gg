@@ -5,6 +5,7 @@ const state = {
     organizationId: 'phronesis-friendfinder',
     websiteId: 'www.ff.com',
     strategyId: 'dep_str_01JADC265PGMP7N8NYS4K80EK1',
+    loaderEl: document.querySelector('.loader'),
 }
 
 const api = RebillyAPI({
@@ -103,6 +104,7 @@ async function initInstruments() {
 async function init() {
     await initRequest();
     await initInstruments();
+    state.loaderEl.style.display = 'none';
 }
 
 init();
