@@ -1083,3 +1083,45 @@ body.funnel {
     }
 }
 
+
+.btn-group {
+    display: inline-flex;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.btn-group button {
+    display: inline-block;
+    padding: 12px 25px;
+    color: var(--primary-color);
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+.btn-group button:first-child {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.btn-group button:last-child {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.btn-group button:disabled {
+    opacity: 0.5;
+}
+
+.btn-group button:hover:not(:disabled) {
+    background-color: rgba(259, 116, 9, 0.15);
+}
+
+.btn-group button.active {
+    color: var(--background-color);
+    background-color: var(--primary-color);
+}
