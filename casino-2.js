@@ -4,7 +4,10 @@ const state = {
     customerId: 'cus_01J7CH07DZGYKT0PZTQ3RE8C9H',
     organizationId: 'phronesis-friendfinder',
     websiteId: 'www.ff.com',
-    strategyId: 'dep_str_01JADC265PGMP7N8NYS4K80EK1',
+    strategies: {
+        USD: 'dep_str_01JAWTA9DRM97VQCP8APXEGF5Z',
+        CAD: 'dep_str_01JAWTC64SJ7NSPHNXWA86PT5W',
+    },
     loaderEl: document.querySelector('.loader'),
     currency: 'USD',
 }
@@ -15,7 +18,7 @@ const api = RebillyAPI({
     sandbox: true,
 });
 
-function selectCurrency(button, currency) {
+async function selectCurrency(button, currency) {
     // Remove active class from all buttons
     document.querySelectorAll('.currency-btn').forEach(btn => {
         btn.classList.remove('active');
@@ -26,15 +29,38 @@ function selectCurrency(button, currency) {
 
     console.log('Selected currency:', currency);
     state.currency = currency;
+
+    state.depositRequestId = await getDepositRequestId();
+
+    RebillyInstruments.update({
+        deposit: {
+            depositRequestId: state.depositRequestId,
+        },
+    })
 }
 
 const currencyButtons = document.querySelectorAll('.currency-btn');
 currencyButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', async (e) => {
         e.preventDefault();
-        selectCurrency(button, button.textContent);
+        await selectCurrency(button, button.textContent);
     })
 })
+
+async function getDepositRequestId() {
+    const requestDepositData = {
+        websiteId: state.websiteId,
+        customerId: state.customerId,
+        strategyId: state.strategies[state.currency],
+        currency: state.currency
+    };
+
+    const {fields: depositFields} = await api.depositRequests.create({
+        data: requestDepositData,
+    });
+
+    return depositFields.id;
+}
 
 async function initRequest() {
     const response = {};
@@ -87,18 +113,10 @@ async function initRequest() {
             },
         });
 
-    const requestDepositData = {
-        websiteId: state.websiteId,
-        customerId: state.customerId,
-        strategyId: state.strategyId,
-        currency: 'USD',
-    };
+    console.log(state);
 
-    const {fields: depositFields} = await api.depositRequests.create({
-        data: requestDepositData,
-    });
     response.token = exchangeToken.token;
-    response.depositRequestId = depositFields.id;
+    response.depositRequestId = await getDepositRequestId();
 
     state.token = response.token;
     state.depositRequestId = response.depositRequestId;
