@@ -52,7 +52,8 @@ async function getDepositRequestId() {
         websiteId: state.websiteId,
         customerId: state.customerId,
         strategyId: state.strategies[state.currency],
-        currency: state.currency
+        currency: state.currency,
+        customPropertySetId: 'dep_prop_01JBH5DXX17E6XYG0TWVAVDPEQ',
     };
 
     const {fields: depositFields} = await api.depositRequests.create({
