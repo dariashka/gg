@@ -51,7 +51,7 @@ async function getDepositRequestId() {
     const requestDepositData = {
         websiteId: state.websiteId,
         customerId: state.customerId,
-        // strategyId: state.strategies[state.currency],
+        strategyId: state.strategies[state.currency],
         currency: state.currency
     };
 
