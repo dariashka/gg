@@ -1117,7 +1117,7 @@ body.funnel {
 }
 
 .btn-group button:hover:not(:disabled) {
-    background-color: rgba(259, 116, 9, 0.15);
+    background-color: rgba(51, 51, 51, 0.35)
 }
 
 .btn-group button.active {
