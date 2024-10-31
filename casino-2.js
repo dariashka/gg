@@ -5,10 +5,10 @@ const state = {
     organizationId: 'gamble-garden',
     websiteId:'www.gamblegarden.com',
     strategies: {
-        USD: 'dep_str_01JAWTA9DRM97VQCP8APXEGF5Z',
-        CAD: 'dep_str_01JAWTC64SJ7NSPHNXWA86PT5W',
+        USD: 'dep_str_01JBH5KH5F0C33FZE8RJ0X1EN0',
+        CAD: 'dep_str_01JBH5MVQXDBPKC7ZQGJV4EA4Y'
     },
-    loaderEl: document.querySelector('.loader'),
+    loaderEl: document.querySelector(   '.loader'),
     currency: 'USD',
 }
 
