@@ -126,9 +126,9 @@ async function initInstruments() {
     let options = {
         apiMode: 'sandbox',
         theme: {
-            colorPrimary: '#F9740A', // Brand color
-            colorText: '#333333', // Text color
-            colorDanger: '#F9740A',
+            colorPrimary: '#333333', // Brand color
+            colorText: '#333', // Text color
+            colorDanger: '#F9740A',c
             buttonColorText: '#ffffff',
             fontFamily: 'Trebuchet MS, sans-serif' // Website font family
         },

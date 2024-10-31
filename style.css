@@ -8,7 +8,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --primary-color: #F9740A;
+    --primary-color: #333333;
     --secondary-color: #45a049;
     --background-color: #f9f9f9;
     --text-color: #333;
@@ -42,9 +42,9 @@ body {
 }
 
 header:not(.rebilly-instruments-error-card-header) {
-    background-color: var(--primary-color);
+    background-color: #fff;
     color: #fff;
-    padding: 0 0 40px;
+    padding: 0;
     text-align: center;
 }
 
@@ -55,11 +55,11 @@ header .logo {
 }
 
 header .logo a {
-    height: 45px;
+    line-height: normal;
 }
 
 header .logo img {
-    width: 45px;
+    width: 250px;
 }
 
 header .logo p {
@@ -84,7 +84,6 @@ header section {
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
     justify-content: space-between;
-    margin-bottom: 40px;
 }
 
 header section .header-button {
