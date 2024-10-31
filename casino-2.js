@@ -128,7 +128,7 @@ async function initInstruments() {
         theme: {
             colorPrimary: '#333333', // Brand color
             colorText: '#333', // Text color
-            colorDanger: '#F9740A',c
+            colorDanger: '#F9740A',
             buttonColorText: '#ffffff',
             fontFamily: 'Trebuchet MS, sans-serif' // Website font family
         },
