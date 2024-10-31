@@ -28,12 +28,59 @@
         <br/>
         <div class="debriefs-container is-project">
             <h3>What made you smile?</h3>
-            <p>e</p>
+            <p>Automatically shows payment methods once configured in Rebilly</p>
             <br/>
             <h3>What did you find confusing?</h3>
-            <ul>
-                <li></li>
-            </ul>
+            <ol>
+                <li>
+                    <p>Clicking outside of dropdown causes it to show (possibly a label width issue) - create new
+                        organization form</p>
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2011.10.57.png" alt=""/>
+                </li>
+
+                <li>Updating organization details does not redirect to the landing page
+                </li>
+                <li>It should be possible to invite people solely using an email address
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2011.13.57.png" alt=""/>
+                </li>
+                <li>Inconsistent with the current flow - it should redirect to the all users page and display a success
+                    toast
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2011.14.50.png" alt=""/>
+                </li>
+                <li>API key is incorrect for the organization and the message was not clear
+                    <img src="debrief-13/image%20(2).png" alt=""/>
+                </li>
+                <li>Deposit property set form has a typo in the label and strange "optional" placeholders
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2011.28.25.png" alt=""/>
+                </li>
+                <li>Confusing error message layout when using deposit sets
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2011.31.22.png" alt=""/>
+                </li>
+                <li>
+                    <p>The <code>colorText</code> variable seems misleading - it applies unexpectedly to not buttons</p>
+                    <img alt="" src="debrief-13/image%20(1).png"/>
+                </li>
+                <li>There are so many bank transfers displayed (bank-transfer-1, bank-transfer-2....)
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2012.08.40.png" alt=""/>
+                </li>
+                <li>Drag and drop in rules engine is somewhat difficult to use
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2012.14.02.png" alt=""/>
+                </li>
+                <li>Not able to differentiate deposits only in the rules engine to reorder payment methods
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2012.17.34.png" alt=""/>
+                </li>
+                <li>Cannot pay using skrill or bank transfer
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2012.23.14.png" alt=""/>
+                </li>
+                <li>We could not find a way to test any payment method except payment cards, we found this documentation
+                    link, and we followed it, without success:
+                    https://www.rebilly.com/docs/tutorials/test-transactions#test-transactions
+                    <img src="debrief-13/Screenshot%202024-10-31%20at%2012.23.37.png" alt=""/>
+                    We could only find test card details, but not details for bank account testing, however we could not
+                    get to inputting information for bank account, since it is erroring.
+                </li>
+            </ol>
+
         </div>
     </section>
 </div>
