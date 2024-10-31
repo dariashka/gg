@@ -1,9 +1,9 @@
 import RebillyAPI from "rebilly-js-sdk";
 
 const state = {
-    customerId: 'cus_01J7CH07DZGYKT0PZTQ3RE8C9H',
-    organizationId: 'phronesis-friendfinder',
-    websiteId: 'www.ff.com',
+    customerId: 'test-customer',
+    organizationId: 'gamble-garden',
+    websiteId:'www.gamblegarden.com',
     strategies: {
         USD: 'dep_str_01JAWTA9DRM97VQCP8APXEGF5Z',
         CAD: 'dep_str_01JAWTC64SJ7NSPHNXWA86PT5W',
@@ -14,7 +14,7 @@ const state = {
 
 const api = RebillyAPI({
     apiKey: import.meta.env.VITE_API_KEY,
-    organizationId: 'phronesis-friendfinder',
+    organizationId: state.organizationId,
     sandbox: true,
 });
 
@@ -51,7 +51,7 @@ async function getDepositRequestId() {
     const requestDepositData = {
         websiteId: state.websiteId,
         customerId: state.customerId,
-        strategyId: state.strategies[state.currency],
+        // strategyId: state.strategies[state.currency],
         currency: state.currency
     };
 
