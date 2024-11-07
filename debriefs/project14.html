@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../style.css">
+    <title>Friend Finder Villa Rentals - Premium Membership</title>
+</head>
+
+<body>
+<!-- Header Section -->
+<header style="padding: 0;">
+    <section style="margin: 0;">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../ggcasino.png" loading="lazy" alt="FF villa">
+            </a>
+            <p>FriendFinder Villa Rentals</p>
+        </div>
+        <div>
+            <a href="../store.html" class="header-button">🛒 Store</a>
+            <a href="../villas.html" class="header-button">Explore the villas</a>
+            <a class="header-button" href="../profile.html">Profile</a>
+        </div>
+    </section>
+</header>
+<div class="container">
+    <!-- Intro Section -->
+    <section class="intro">
+        <a href="index.html">⬅ Back to debriefs</a>
+        <h2>Project 14: Casino deposit currency</h2>
+        <br/>
+        <div class="debriefs-container is-project">
+            <h3>What made you smile?</h3>
+            <p>It was an interesting session, learning a lot about the DCC feature</p>
+            <br/>
+            <h3>What did you find confusing?</h3>
+            <ul>
+                <li>Confusing documentation with confusing search. Cannot find docs using search because it is
+                    prioritizing API results. I (Dasha) didn't know where to start.
+                </li>
+                <li>Not enough testing sample card details in docs and not convenient to use it
+                    <img src="debrief-14/docs_sample_cards.png" alt=""/>
+                </li>
+                <li>In docs, DCC is mentioned to be used with off site payment flow, but we don't think that is correct
+                    /
+                    helpful, on the topic of test details
+                    <img src="debrief-14/dcc_confusing.png" alt=""/>
+                </li>
+                <li>After transaction was declined (because of insufficient funds), the back button occur the error
+                    <img src="debrief-14/back-button.png" alt=""/>
+                </li>
+                <li>Not sure if we have access to DCC feature or not (no information about availability in sandbox)
+                </li>
+                <li>Buggy payment instruments dropdown in Recomm
+                    <img src="debrief-14/popup.png" alt="">
+                </li>
+                <li>Saved test payment card randomly shows two errors, seems like data is not reactive. It only happens
+                    with this card
+                    <img src="debrief-14/tokens_error.png" alt=""/>
+                </li>
+                <li>We cannot unselect force currency in DCC form
+                    <img src="debrief-14/deselect.png" alt=""/>
+                </li>
+                <li>We had an issue to get the DCC popup shown due to enabled force currency
+                </li>
+                <li>DCC popup is not styled properly with the styles provided in configuration
+                    <img src="debrief-14/dcc.png" alt=""/>
+                </li>
+                <li>On transaction view there is no gap between DCC and Sticky gateway pills.
+                </li>
+                <li> And on hovering the DCC you cannot copy anything, and the data (rate) is different from the data in
+                    timeline - it's correct but confusing.
+                    <img src="debrief-14/interaction_details.png" alt=""/>
+                </li>
+                <li>Segments are showing nothing. Feature or bug?
+                    <img src="debrief-14/segments.png" alt=""/>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+</body>
+
+</html>
