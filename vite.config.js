@@ -15,6 +15,7 @@ export default defineConfig({
         project12: resolve(__dirname, 'debriefs/project12.html'),
         project13: resolve(__dirname, 'debriefs/project13.html'),
         project14: resolve(__dirname, 'debriefs/project14.html'),
+        project15: resolve(__dirname, 'debriefs/project15.html'),
       },
     },
   },

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../style.css">
+    <title>Gamble Garden Casino - Premium Membership</title>
+</head>
+
+<body>
+<!-- Header Section -->
+<header style="padding: 0;">
+    <section style="margin: 0;">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../ggcasino.png" loading="lazy" alt="FF villa">
+            </a>
+            <p>Gamble Garden</p>
+        </div>
+    </section>
+</header>
+<div class="container">
+    <!-- Intro Section -->
+    <section class="intro">
+        <a href="index.html">⬅ Back to debriefs</a>
+        <h2>Project 15: Casino deposit 3ds</h2>
+        <br/>
+        <div class="debriefs-container is-project">
+            <h3>What made you smile?</h3>
+            <p>
+                It is a cool feature, easy configurable.
+            </p>
+            <br/>
+            <h3>What did you find confusing?</h3>
+            <ol>
+                <li>Confusing docs. It should be mirroring the recomm flow of the user to help him find the related docs
+                    easier.
+                </li>
+                <li>And it does not provide details on how to configure it, and then it links a configuration
+                    page, but then shows 3ds flows below
+                    <img src="./debrief-15/img.png" src=""/></li>
+                <li>Testing is mentioned at the bottom of 3ds page, but at that point, we were not explicitly told how
+                    to configure it
+                </li>
+                <li>
+                    [3ds configuration
+                    link](https://www.rebilly.com/docs/settings/set-up-a-gateway#configure-3d-secure-(3ds)) points to a
+                    part of setup payment gateway page, it would be much clearer if it was a separate perhaps
+                </li>
+                <li>
+                    It is explaining what 3ds is, and links me to configuration, to the same page I just came from
+                    <img src="./debrief-15/img_1.png" alt=""/>
+                </li>
+                <li>
+                    topic is about testing, but we are firstly prompted to configure it, perhaps this all needs to be
+                    one tutorial/guide?
+                    <img src="./debrief-15/img_3.png" alt="">
+                </li>
+                <li>
+                    not sure what the admonition means at all, and also not sure this is best way to show the internal
+                    process, perhaps we can replace with a flowchart of some sort? (edited)
+                    <img src="./debrief-15/img_4.png" alt="">
+                </li>
+                <li>
+                    Clicking on "Test a generic 3DS flow" on the bottom of this page, I get redirected to just see test
+                    details - completely unexpected.
+                    <img src="./debrief-15/img_5.png" alt="">
+                </li>
+
+                <li>Placeholders are used as labels to explain validation, which should not be the case.</li>
+                <li>"Decline not enrolled" is not clear because it is a checkbox, I would expect different wording.
+                    <img src="./debrief-15/img_2.png" alt=""></li>
+                <li>
+                    Capitalization issues with card names:
+                    <img src="./debrief-15/img_6.png" alt="">
+                    We can group these properties by card, I found it confusing I had to make changes for visa, and two
+                    fields are separated by 5 text boxes.
+                </li>
+                <li>
+                    When we just put in Visa test details, as per the guide, we got validation errors, and the
+                    Mastercard properties did not show validation failed styling (red borders, etc), rather just summary
+                    error field
+                    <img src="./debrief-15/img_7.png" alt="">
+                </li>
+                <li>
+                    our payment instruments dropdown grew quite long - we should have an overflow here to manage this.
+                    <img src="./debrief-15/img_8.png" alt="">
+                </li>
+                <li>
+                    Clicking "Choose another payment method" when 3DS declines redirects to HPF
+                </li>
+                <li>
+                    We could not find docs on differences between generic 3ds flow and challenge flow? Is "frictionless"
+                    flow generic?
+                </li>
+                <li>
+                    Setting the filters for bank country broke up the payment flow
+                    <img src="./debrief-15/img_9.png" alt="">
+                </li>
+                <li>
+                    3DS challenge worked, even when instruction was "do nothing", but documentation states it should be
+                    set to "Authorize"
+                    <img src="./debrief-15/img_10.png" alt="">
+                    <img src="./debrief-15/img_11.png" alt="">
+                </li>
+                <li>
+                    Hard to test when filtering to specific bank countries, as we only have few test cards, and we do
+                    not have both challenge and frictionless test cards on file
+                </li>
+                <li>
+                    I can click the plan text, and it hides the border around the element.
+                    <img src="./debrief-15/img_12.png" alt="">
+                </li>
+                <li>
+                    Instruments visual bug:
+                    <img src="./debrief-15/img_13.png" alt="">
+                </li>
+            </ol>
+        </div>
+    </section>
+</div>
+</body>
+
+</html>
