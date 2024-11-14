@@ -1,20 +1,20 @@
 import RebillyAPI from "rebilly-js-sdk";
 
 const state = {
-    customerId: 'cus_01J7CH07DZGYKT0PZTQ3RE8C9H',
-    organizationId: 'phronesis-friendfinder',
-    websiteId: 'www.ff.com',
+    customerId: 'test-customer',
+    organizationId: 'gamble-garden',
+    websiteId:'www.gamblegarden.com',
     strategies: {
-        USD: 'dep_str_01JAWTA9DRM97VQCP8APXEGF5Z',
-        CAD: 'dep_str_01JAWTC64SJ7NSPHNXWA86PT5W',
+        USD: 'dep_str_01JBH5KH5F0C33FZE8RJ0X1EN0',
+        CAD: 'dep_str_01JBH5MVQXDBPKC7ZQGJV4EA4Y'
     },
-    loaderEl: document.querySelector('.loader'),
+    loaderEl: document.querySelector(   '.loader'),
     currency: 'USD',
 }
 
 const api = RebillyAPI({
     apiKey: import.meta.env.VITE_API_KEY,
-    organizationId: 'phronesis-friendfinder',
+    organizationId: state.organizationId,
     sandbox: true,
 });
 
@@ -52,7 +52,8 @@ async function getDepositRequestId() {
         websiteId: state.websiteId,
         customerId: state.customerId,
         strategyId: state.strategies[state.currency],
-        currency: state.currency
+        currency: state.currency,
+        customPropertySetId: 'dep_prop_01JBH5DXX17E6XYG0TWVAVDPEQ',
     };
 
     const {fields: depositFields} = await api.depositRequests.create({
@@ -126,8 +127,8 @@ async function initInstruments() {
     let options = {
         apiMode: 'sandbox',
         theme: {
-            colorPrimary: '#F9740A', // Brand color
-            colorText: '#333333', // Text color
+            colorPrimary: '#333333', // Brand color
+            colorText: '#333', // Text color
             colorDanger: '#F9740A',
             buttonColorText: '#ffffff',
             fontFamily: 'Trebuchet MS, sans-serif' // Website font family
