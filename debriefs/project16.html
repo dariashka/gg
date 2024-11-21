@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../style.css">
+    <title>Gamble Garden Casino - Premium Membership</title>
+</head>
+
+<body>
+<!-- Header Section -->
+<header style="padding: 0;">
+    <section style="margin: 0;">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../ggcasino.png" loading="lazy" alt="FF villa">
+            </a>
+            <p>Gamble Garden</p>
+        </div>
+    </section>
+</header>
+<div class="container">
+    <!-- Intro Section -->
+    <section class="intro">
+        <a href="index.html">⬅ Back to debriefs</a>
+        <h2>Project 16: Casino payout form</h2>
+        <br/>
+        <div class="debriefs-container is-project">
+            <h3>What made you smile?</h3>
+            <p>
+            </p>
+            <br/>
+            <h3>What did you find confusing?</h3>
+            <ol>
+                <li>Search is still giving us problems</li>
+                <li>Instruments library is not linked on the side navigation, but it is on home page
+                    <img src="debrief-16/docs-payment-instruments.png" alt="">
+                </li>
+                <li>Clicking "Rebilly Instruments" on the developer docs landing page redirects to "Integrate self
+                    hosted payment forms" - it is confusing.
+                </li>
+                <li>Code walkthrough component should be wider, we found horizontally scrolling a lot</li>
+                <li>No clear explanation that payout request needs to be generated on the server side and why.. (Example
+                    says use HTML and CDN)
+                </li>
+                <li>Prerequisites are not correct.</li>
+                <li>No mention of gateway having to be configured to allow payouts.
+                    <img src="debrief-16/docs-test-processor.png" alt="">
+                </li>
+                <li>Payout requests not showing up on the customer timeline
+                    <img src="debrief-16/customer-timeline.png" alt="">
+                </li>
+                <li>"Amount requests" wrong copy</li>
+                <li>Payout request page UI is inconsistent and lacking data
+                    <img src="debrief-16/payout-details-page.png" alt="">
+                </li>
+                <li>
+                    Remaining payout allocation is not calculated as you allocate amounts (before saving)
+                    <img src="debrief-16/calculation.png" alt="">
+                </li>
+                <li>There was no gateway for request payout method, it is not prefilling the value, and the "requested"
+                    badge does not like, and noticeable.
+                    <img src="debrief-16/no-gateway.png" alt="">
+                </li>
+                <li>Payout request was fulfilled, but turns out transaction actually failed and test processor timed
+                    <output class=""></output>
+                    <img src="debrief-16/transaction-timeout.png" alt="">
+                </li>
+                <li>
+                    Cannot navigate to payout request page, from the transaction page.
+                    <img src="debrief-16/no-link-to-payout.png" alt="">
+                </li>
+                <li>
+                    Weird behaviour after reinitializing instruments
+                    <img src="debrief-16/double.png" alt="">
+                </li>
+                <li>
+                    Customer has to calculate the remaining amount to allocate
+                    <img src="debrief-16/customer-calculations.png" alt="">
+                </li>
+            </ol>
+        </div>
+    </section>
+</div>
+</body>
+
+</html>

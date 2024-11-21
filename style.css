@@ -248,11 +248,11 @@ header section .header-button {
 
 .donation-button,
 .deposit-button {
-    color: var(--primary-color);
+    color: white;
     border: 1px solid var(--primary-color);
-    background-color: white;
+    background-color: var(--primary-color);
     padding: 16px 32px;
-    border-radius: 6px;
+    border-radius: 50px;
     font-size: 1rem;
     line-height: 1rem;
     cursor: pointer;
@@ -265,11 +265,10 @@ header section .header-button {
 .deposit-button:hover,
 #make-donation,
 #make-deposit {
-    background-color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    background-color: #000;
+    border: 1px solid #000;
     color: white;
     padding: 16px 32px;
-    border-radius: 6px;
     font-size: 1rem;
     width: 100%;
     cursor: pointer;
