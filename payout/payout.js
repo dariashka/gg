@@ -2,12 +2,13 @@ import RebillyAPI from "rebilly-js-sdk";
 
 const state = {
     amount: 100,
-    customerId: 'test-customer',
+    customerId: 'american',
     organizationId: 'gamble-garden',
     websiteId: 'www.gamblegarden.com',
     loaderEl: document.querySelector('.loader'),
     currency: 'USD',
     payoutRequestId: '',
+    instrumentsInitiated: false,
 }
 
 const api = RebillyAPI({
@@ -15,6 +16,36 @@ const api = RebillyAPI({
     organizationId: state.organizationId,
     sandbox: true,
 });
+
+async function selectCustomer(button, customer) {
+    // Remove active class from all buttons
+    document.querySelectorAll('.customer-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Add active class to clicked button
+    button.classList.add('active');
+
+    console.log('Selected customer:', customer);
+    state.customerId = customer;
+
+    if (state.instrumentsInitiated) {
+        state.loaderEl.style.display = 'block';
+        await initRequest();
+        state.loaderEl.style.display = 'none';
+    }
+}
+
+const customerButtons = document.querySelectorAll('.customer-btn');
+customerButtons.forEach(button => {
+    button.addEventListener('click', async (e) => {
+        e.preventDefault();
+        console.log(button.textContent);
+
+        await selectCustomer(button, button.textContent);
+    })
+})
+
 
 async function initRequest() {
     const response = {};
@@ -107,6 +138,7 @@ async function init() {
     state.loaderEl.style.display = 'block';
     await initRequest();
     await initInstruments();
+    state.instrumentsInitiated = true;
     state.loaderEl.style.display = 'none';
 }
 

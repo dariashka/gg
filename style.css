@@ -136,6 +136,7 @@ header section .header-button {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .membership-card,
@@ -1099,6 +1100,7 @@ body.funnel {
     transition: background-color 0.3s ease;
     cursor: pointer;
     border-radius: 0;
+    text-transform: capitalize;
 }
 
 .btn-group button:first-child {
