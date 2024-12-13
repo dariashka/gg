@@ -3,19 +3,54 @@ import RebillyAPI from "rebilly-js-sdk";
 const state = {
     customerId: 'test-customer',
     organizationId: 'gamble-garden',
-    websiteId:'www.gamblegarden.com',
+    websiteId: 'www.gamblegarden.com',
     strategies: {
         USD: 'dep_str_01JBH5KH5F0C33FZE8RJ0X1EN0',
         CAD: 'dep_str_01JBH5MVQXDBPKC7ZQGJV4EA4Y'
     },
-    loaderEl: document.querySelector(   '.loader'),
+    loaderEl: document.querySelector('.loader'),
     currency: 'USD',
-}
+    customerType: 'default', // default or vip
+    customerIds: {
+        default: 'test-customer',
+        vip: 'cus_01JF04BWS6YBE5V1P52XQSSZEA',
+    },
+};
 
 const api = RebillyAPI({
     apiKey: import.meta.env.VITE_API_KEY,
     organizationId: state.organizationId,
     sandbox: true,
+});
+
+function selectCustomer(button, customerType) {
+    // Remove active class from all buttons
+    document.querySelectorAll('.customer-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Add active class to the clicked button
+    button.classList.add('active');
+
+    console.log('Selected customer type:', customerType);
+    state.customerType = customerType;
+
+    // Update customerId based on the selected type
+    state.customerId = state.customerIds[customerType];
+
+    // Reinitialize the deposit request
+    initRequest()
+        .then(() => updateInstruments())
+        .catch(err => console.error('Error initializing instruments:', err));
+}
+
+const customerButtons = document.querySelectorAll('.customer-btn');
+customerButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const customerType = button.getAttribute('data-customer');
+        selectCustomer(button, customerType);
+    });
 });
 
 async function selectCurrency(button, currency) {
@@ -56,7 +91,7 @@ async function getDepositRequestId() {
         customPropertySetId: 'dep_prop_01JBH5DXX17E6XYG0TWVAVDPEQ',
     };
 
-    const {fields: depositFields} = await api.depositRequests.create({
+    const { fields: depositFields } = await api.depositRequests.create({
         data: requestDepositData,
     });
 
@@ -124,14 +159,14 @@ async function initRequest() {
 }
 
 async function initInstruments() {
-    let options = {
+    const options = {
         apiMode: 'sandbox',
         theme: {
-            colorPrimary: '#333333', // Brand color
-            colorText: '#333', // Text color
+            colorPrimary: '#333333',
+            colorText: '#333',
             colorDanger: '#F9740A',
             buttonColorText: '#ffffff',
-            fontFamily: 'Trebuchet MS, sans-serif' // Website font family
+            fontFamily: 'Trebuchet MS, sans-serif'
         },
         deposit: {
             depositRequestId: state.depositRequestId,
@@ -140,6 +175,15 @@ async function initInstruments() {
     };
 
     RebillyInstruments.mount(options);
+}
+
+async function updateInstruments() {
+    RebillyInstruments.update({
+        deposit: {
+            depositRequestId: state.depositRequestId,
+        },
+        jwt: state.token,
+    });
 }
 
 async function init() {
